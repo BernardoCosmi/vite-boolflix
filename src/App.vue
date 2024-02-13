@@ -1,18 +1,26 @@
+<template>
+  <AppMenu/>
+  <MovieList/>
+</template>
+
 <script>
 import AppMenu from "./components/nav-menu/AppMenu.vue"
-import AppSearch from "./components/nav-menu/AppSearch.vue"
+import MovieList from './components/movie-card/MovieList.vue';
+import { store } from './store.js';
+import axios from 'axios';
+
   export default{
     components: {
       AppMenu,
-      AppSearch
-    }
-  }
+      MovieList
+    },
+};
 </script>
 
-<template>
-  
-</template>
-
 <style scoped>
-
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 </style>
