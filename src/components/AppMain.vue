@@ -11,7 +11,7 @@
         <h2 class="text-center mt-5">
             Series
         </h2>
-        <div class="row row gap-2 align-items-start justify-content-center">
+        <div class="series-row row gap-2 align-items-start flex-nowrap">
             <AppCard v-for="(serie, index) in store.series" :key="index" :item="serie" />
         </div>
     </div>
@@ -46,6 +46,10 @@ export default {
     width: 100vw;
 }
 .movies-row{
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.series-row{
     overflow-x: auto;
     white-space: nowrap;
 
