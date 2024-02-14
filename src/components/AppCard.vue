@@ -63,13 +63,12 @@ export default{
 
 <style scoped>
 .card{
-    height: 750px;
     padding: 0px;
     margin: 0;
     justify-content: space-between;
     border: none;
     .poster{
-        margin: 0;
+        aspect-ratio: auto;
     }
     .title{
         height: 70px;
