@@ -40,10 +40,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  
-  * {
-    border: 1px solid black;
-  }
 
   .container{
     width: 100%;

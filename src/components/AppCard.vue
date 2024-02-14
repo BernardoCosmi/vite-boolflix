@@ -1,10 +1,10 @@
 <template>
-    <div class="card d-flex flex-column col-3 border">
+    <div class="card d-flex flex-column col-3 ">
         
         <!-- POSTER -->
-        <img :src="`https://image.tmdb.org/t/p/w500/${item.poster_path}`" alt="">
+        <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" :alt="`Poster for ${item.original_title ? item.original_title : item.original_name}`">
 
-        <div class="d-flex flex-column">
+        <div class=" d-flex flex-column">
 
             <!-- ORIGINAL TITLE/NAME -->
             <h4 class="text-center text-wrap title">
@@ -19,13 +19,20 @@
                         https://flagcdn.com/60x45/${item.original_language === 'en' ? 'gb' : item.original_language}.png 3x`"
                     width="20"
                     height="15"
-                    alt="Language">
+                    alt=" Original Language">
             </div>
             <!-- VOTE -->
             <p class="text-center text-wrap">
-                {{ item.vote_average }}
+                <span v-for="i in 5" :key="i" class="star-container">
+                    <span class="full-stars" v-if="i <= Math.round(item.vote_average / 2)">
+                        &#9733;
+                    </span>
+                    <span v-else>
+                        &#9734; <!-- Stelle vuote -->
+                    </span>
+                </span>
             </p>
-
+    
         </div>
 
     </div>
@@ -56,16 +63,25 @@ export default{
 
 <style scoped>
 .card{
-    height: 650px;
-    padding: 0;
+    height: 750px;
+    padding: 0px;
     margin: 0;
     justify-content: space-between;
+    border: none;
+    .poster{
+        margin: 0;
+    }
     .title{
         height: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid black;
+    }
+}
+.star-container{
+    font-size: xx-large;
+    .full-stars{
+        color: gold;
     }
 }
 </style>
