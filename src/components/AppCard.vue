@@ -1,25 +1,35 @@
 <template>
-    <div class="card d-flex flex-column col-3 ">
-        
-        <!-- POSTER -->
-        <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" :alt="`Poster for ${item.original_title ? item.original_title : item.original_name}`">
+    <div class="card d-flex flex-column col-3" @mouseenter="showInfo = true" @mouseleave="showInfo = false">
 
-        <div class=" d-flex flex-column d-none">
+        <!--SECTION POSTER -->
+        <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`"
+            :alt="`Poster for ${item.original_title ? item.original_title : item.original_name}`">
+
+
+        <!-- SECTION INFO -->
+        <div class="info" :class="{ 'd-none': !showInfo }">
 
             <!-- ORIGINAL TITLE/NAME -->
-            <h4 class="text-center text-wrap title">
-                {{item.original_title ? item.original_title : item.original_name}}
+            <h4 class="text-center text-wrap title mx-2">
+                {{ item.original_title ? item.original_title : item.original_name }}
             </h4>
+
+            <!-- OVERVIEW -->
+            <p class="text-center text-wrap mx-4">
+                <template v-if="item.overview">
+                    {{ item.overview }}
+                </template>
+                <template v-else>
+                    <i>Plot not available</i>
+                </template>
+            </p>
 
             <!-- LANGUAGE -->
             <div class="text-center">
-                <img
-                    :src="`https://flagcdn.com/20x15/${item.original_language === 'en' ? 'gb' : item.original_language}.png`"
-                    :srcset="`https://flagcdn.com/40x30/${item.original_language === 'en' ? 'gb' : item.original_language}.png 2x,
-                        https://flagcdn.com/60x45/${item.original_language === 'en' ? 'gb' : item.original_language}.png 3x`"
-                    width="20"
-                    height="15"
-                    alt=" Original Language">
+                <img :src="`https://flagcdn.com/20x15/${item.original_language === 'en' ? 'us' : item.original_language}.png`"
+                    :srcset="`https://flagcdn.com/40x30/${item.original_language === 'en' ? 'us' : item.original_language}.png 2x,
+                                            https://flagcdn.com/60x45/${item.original_language === 'en' ? 'us' : item.original_language}.png 3x`"
+                    width="20" height="15" :alt="`${(item.original_language)}`">
             </div>
             <!-- VOTE -->
             <p class="text-center text-wrap">
@@ -32,58 +42,88 @@
                     </span>
                 </span>
             </p>
-    
+
         </div>
 
     </div>
-
 </template>
 
 <script>
-import {store} from '../store'
+import { store } from '../store'
 
-export default{
+export default {
     name: 'AppCard',
     props: [
         'item'
     ],
-    data(){
-        return{
-            store
+    data() {
+        return {
+            store,
+            showInfo: false,
         }
     },
-    mounted(){
-        
+    mounted() {
+
     },
-    methods:{
+    methods: {
 
     },
 }
 </script>
 
 <style scoped>
-.card{
+.card {
     padding: 0px;
     margin: 0;
     justify-content: space-between;
     border: none;
     height: 512px;
-    width: 342;
-    .poster{
-        aspect-ratio: auto;
-        height: 100%;
-    }
-    .title{
-        height: 70px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    width: 342px;
+    position: relative;
+    /* Posizione relativa per posizionare l'elemento info */
 }
-.star-container{
+
+.poster {
+    aspect-ratio: auto;
+    height: 100%;
+}
+
+.title {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.star-container {
     font-size: xx-large;
-    .full-stars{
-        color: gold;
-    }
 }
-</style>
+
+.full-stars {
+    color: gold;
+}
+
+/* Stile dell'elemento info */
+.info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(33, 37, 41, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Inizialmente l'info è nascosto */
+    pointer-events: none;
+    /* Evita che gli eventi vengano catturati dall'elemento nascosto */
+}
+
+.card:hover .info {
+    opacity: 1;
+}
+
+.d-none {
+    display: none !important;
+}</style>

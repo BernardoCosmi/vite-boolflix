@@ -14,22 +14,24 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link home-link" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Serie TV</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Film</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Nuovi e popolari</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">La mia lista</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sfoglia per lingua</a>
+                <li class="nav-item">
+                  <a class="nav-link home-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">TV shows</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Movies</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">New</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">My List</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Browse by language</a>
+                </li>
               </li>
             </ul>
           </div>
@@ -40,7 +42,7 @@
       <div class="col-3 ms-3">
         <form @submit.prevent="$emit('emitGetData')">
           <div class="input-group">
-            <input type="text" class="form-control" name="search" id="search" aria-describedby="helpId" placeholder="Cerca un film o una serie TV" v-model="store.searchText">
+            <input type="text" class="form-control" name="search" id="search" aria-describedby="helpId" placeholder="Search for a movie or TV series" v-model="store.searchText">
             <div class="input-group-append">
               <button type="submit" class="btn btn-danger">Search</button>
             </div>
