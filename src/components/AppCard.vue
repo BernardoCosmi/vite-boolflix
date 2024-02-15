@@ -4,7 +4,7 @@
         <!-- POSTER -->
         <img class="poster" :src="`https://image.tmdb.org/t/p/w342/${item.poster_path}`" :alt="`Poster for ${item.original_title ? item.original_title : item.original_name}`">
 
-        <div class=" d-flex flex-column">
+        <div class=" d-flex flex-column d-none">
 
             <!-- ORIGINAL TITLE/NAME -->
             <h4 class="text-center text-wrap title">
@@ -67,8 +67,11 @@ export default{
     margin: 0;
     justify-content: space-between;
     border: none;
+    height: 512px;
+    width: 342;
     .poster{
         aspect-ratio: auto;
+        height: 100%;
     }
     .title{
         height: 70px;
